@@ -1,0 +1,69 @@
+Running pyspark script file : 
+
+export PYSPARK_PYTHON=python3.6 
+spark-submit --master yarn --executor-cores 4 --num-executors 10 --executor-memory 10G --driver-memory 10G --deploy-mode cluster --conf spark.dynamicAllocation.enabled=false test.py 
+
+Drop External tables
+
+ALTER TABLE t_partition_test_200 SET TBLPROPERTIES('EXTERNAL'='False'); 
+drop TABLE t_partition_test_200 
+
+Logout from neo4j Ui                 :server disconnect 
+Deleting small datasets:             Match(n:Label) Detach Delete n 
+Deleting large datasets:  CALL apoc.periodic.iterate("MATCH (n:`label`) RETURN n", "DETACH DELETE n", {batchSize:100, parallel:true})
+
+Copy files from one gw node to another 
+scp /home/gudurvk/abbvie_neo4j_test.py gudurvk@10.242.37.211:/home/gudurvk 
+
+
+yarn application -kill application_1645795895039_22024 
+
+Hive table size 
+hdfs dfs -du -s -h s3a://arch-dev-datalake/development/data/warehouse/integrated/genomics_dev.db/rsa_clinical_unified 
+
+shift+g --go to last of vi 
+
+?text --to search in VI 
+
+=============================================================================== 
+
+#Copy from gateway node to buildmachine 
+scp -i  dev_ssu_nabu.pem pharma-dev-environment.crt centos@10.253.128.148:/home/centos/test 
+
+Copy to docker from node 
+
+docker cp pharma-dev-environment.crt crawlers.nabu:/opt/nabu/common/conf 
+
+
+Connect to builmachine 
+chmod 600 pemfile 
+ssh -i dev_ssu_nabu.pem centos@10.253.128.148 
+
+ 
+
+Connect to docker 
+docker exec -it crawlers.nabu bash  
+
+
+CSV to SAS conversion: 
+java -cp /home/gudurvk/carolina-jdbc-2.4.3-lic.jar com.dullesopen.jdbc.Driver --as-sas7bdat /home/gudurvk/workarea/prakash/dm_m11271q_anon.csv 
+
+  
+
+Hive table to CSV conversion: 
+env HADOOP_CLIENT_OPTS="-Ddisable.quoting.for.sv=false" beeline --showHeader=true --silent=true --outputformat=csv2 -e "set hive.resultset.use.unique.column.names=false;select * from clinical_trials_dev_anon.dm_m11271q_anon" > dm_m11271q_anon.csv 
+
+
+
+
+CDE resource creation
+cde resource create --name pyspark_deid --python-version python3 --type python-env --pypi-mirror "https://pypi.org/simple" --vcluster-endpoint https://xqqrjsr7.cde-7vw6b6x6.arch-dev.l6rn-zj16.cloudera.site/dex/api/v1 --user gudurvk 
+
+cde resource upload --name pyspark_deid --local-path requirements.txt --vcluster-endpoint https://xqqrjsr7.cde-7vw6b6x6.arch-dev.l6rn-zj16.cloudera.site/dex/api/v1 --user gudurvk 
+
+cde resource describe --name pyspark_deidentification --vcluster-endpoint https://xqqrjsr7.cde-7vw6b6x6.arch-dev.l6rn-zj16.cloudera.site/dex/api/v1 --user gudurvk 
+
+
+cde spark submit test.py --conf spark.dynamicAllocation.enabled=false --conf spark.sql.shuffle.partitions=10  --vcluster-endpoint https://xqqrjsr7.cde-7vw6b6x6.arch-dev.l6rn-zj16.cloudera.site/dex/api/v1   --user gudurvk 
+
+
