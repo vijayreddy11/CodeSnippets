@@ -1,0 +1,41 @@
+listTemp(templateData)::=<<
+[
+<templateData.get_table_count :{ r | <mapTemp(r)> };separator = ",\n">
+]
+>>
+
+mapTemp(map) ::= <<
+{
+<map.keys : { ele | <getObject(map,ele)> };separator=",\n">
+}
+>>
+
+
+
+getObject(map,ele)::=<<
+ <ele> : <map.(ele)>
+>>
+
+listTemp2(templateData)::=<<
+[
+<templateData.get_destination_dataplace_name :{ r | <mapTemp(r)> };separator = ",\n">
+]
+
+>>
+
+updateDM(data_movement_ids, refreshfreq)::=<<
+update nabu.data_movement_physical set refresh_freq = '<refreshfreq>'
+where data_movement_id in ($data_movement_ids$)
+>>
+
+listTempZ(templateData)::=<<
+$if(templateData.usubjid_checker)$
+$templateData: SkewDate_temp()$
+$else$
+hi
+$endif$
+>>
+
+SkewDate_temp(row)::=<<
+temp
+>>

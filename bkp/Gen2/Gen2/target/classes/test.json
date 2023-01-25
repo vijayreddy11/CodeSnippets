@@ -1,0 +1,29 @@
+{
+  "get_table_count": [
+    {
+      "dataplace_name": "Postgresql_crawling",
+      "count": 2,
+      "dataplace_id": 17
+    },
+    {
+      "dataplace_name": "Mysql_crawling",
+      "count": 2,
+      "dataplace_id": 19
+    }
+  ],
+  "get_destination_dataplace_name": [
+    {
+      "dataplace_name": "Rel_to_GCS"
+    }
+  ],
+  "get_success_email_id": [
+    {
+      "data_movement_id": 22,
+      "email_id": "\"abhinav.kolipaka@modak.com,anudeep.konaboina@modak.com\"",
+      "refresh_freq": "0 17 18 05 03 ? 2021",
+      "data_movement_name": "RelToGcsSpark",
+      "mod_ts": "2021-01-21 13:53:36.952094",
+      "tags": "tags"
+    }
+  ]
+}

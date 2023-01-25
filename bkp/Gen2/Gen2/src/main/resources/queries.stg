@@ -1,0 +1,6 @@
+group queries;
+
+updateDM(data_movement_ids, refreshfreq)::=<<
+update nabu.data_movement_physical set refresh_freq = '$refreshfreq$'
+where data_movement_id in ($data_movement_ids$)
+>>
